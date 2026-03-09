@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using Xunit;
-
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void MethodWithSZArray()
+        public async Task MethodWithSZArray()
         {
             Assert.Equal(6, await Invoke(
                 @"var r = x.MethodWithSZArray(new int[] { 1,2,3 });",
@@ -18,7 +15,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodReturningSZArray()
+        public async Task MethodReturningSZArray()
         {
             Assert.Equal(new int[] { 1, 2, 3 }, await Invoke(
                 @"var r = x.MethodReturningSZArray();",
@@ -27,7 +24,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodWithMultiDimArray()
+        public async Task MethodWithMultiDimArray()
         {
             Assert.Equal(78, await Invoke(
                 @"
@@ -42,7 +39,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodReturningMultiDimArray()
+        public async Task MethodReturningMultiDimArray()
         {
             var expected = new int[,,]
             {
@@ -57,7 +54,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodWithJaggedArray()
+        public async Task MethodWithJaggedArray()
         {
             Assert.Equal(36, await Invoke(
                 @"
@@ -72,7 +69,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodReturningJaggedArray()
+        public async Task MethodReturningJaggedArray()
         {
             var expected = new int[][]
             {
@@ -86,7 +83,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodWithSZArrayOfUserType()
+        public async Task MethodWithSZArrayOfUserType()
         {
             Assert.Equal(21, await Invoke(
                 @"
@@ -102,18 +99,17 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodReturningSZArrayOfUserType()
+        public async Task MethodReturningSZArrayOfUserType()
         {
-            Assert.Equal((3,4), await Invoke(
+            Assert.Equal((3, 4), await Invoke(
                 @"
                 var r = x.MethodReturningSZArrayOfUserType();",
                 "(r[1].x, r[1].y)"
                 ));
         }
 
-
         [Fact]
-        public async void MethodWithMultiDimArrayOfUserType()
+        public async Task MethodWithMultiDimArrayOfUserType()
         {
             Assert.Equal(36, await Invoke(
                 @"
@@ -128,12 +124,13 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodReturningMultiArrayOfUserType()
+        public async Task MethodReturningMultiArrayOfUserType()
         {
-            Assert.Equal((3,4), await Invoke(
+            Assert.Equal((3, 4), await Invoke(
                 @"
                 var r = x.MethodReturningMultiDimArrayOfUserType();",
                 "(r[0,1].x, r[0,1].y)"
                 ));
-        }    }
+        }
+    }
 }

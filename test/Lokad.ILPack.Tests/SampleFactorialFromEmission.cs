@@ -10,7 +10,7 @@ namespace Lokad.ILPack.Tests
         public static Assembly EmitAssembly(int theValue)
         {
             // create assembly name
-            var assemblyName = new AssemblyName {Name = "FactorialAssembly"};
+            var assemblyName = new AssemblyName { Name = "FactorialAssembly" };
 
             // create assembly with one module
             var newAssembly =

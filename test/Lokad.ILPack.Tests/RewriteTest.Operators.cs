@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
-
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void OperatorBinary()
+        public async Task OperatorBinary()
         {
             Assert.Equal((40, 60), await Invoke(
                 $"var s = new MyStruct(10,20) + new MyStruct(30, 40);",
@@ -17,7 +17,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void OperatorUnary()
+        public async Task OperatorUnary()
         {
             Assert.Equal((-10, -20), await Invoke(
                 $"var s = -(new MyStruct(10,20));",
@@ -25,7 +25,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void OperatorCastExplicit()
+        public async Task OperatorCastExplicit()
         {
             Assert.Equal("[10,20]", await Invoke(
                 $"string s = new MyStruct(10,20);",
@@ -33,7 +33,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void OperatorCastImplicit()
+        public async Task OperatorCastImplicit()
         {
             Assert.Equal(5.5, await Invoke(
                 $"double r = (double)new MyStruct(1, 10);",

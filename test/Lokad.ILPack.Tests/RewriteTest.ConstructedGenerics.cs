@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Lokad.ILPack.Tests
@@ -8,7 +6,7 @@ namespace Lokad.ILPack.Tests
     public partial class RewriteTest
     {
         [Fact]
-        public async void GenericStructInt()
+        public async Task GenericStructInt()
         {
             Assert.Equal(5, await Invoke(
                 @"var r = x.GenericStructInt;",
@@ -17,7 +15,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void GenericStructConstructedMethod()
+        public async Task GenericStructConstructedMethod()
         {
             Assert.Equal("Hello Generic World!", await Invoke(
                 @"var r = x.GenericStructConstructedMethod(""Hello Generic World!"");",
@@ -26,7 +24,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void GenericClassInt()
+        public async Task GenericClassInt()
         {
             Assert.Equal(5, await Invoke(
                 @"var r = x.GenericClassInt;",
@@ -35,7 +33,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void GenericClassConstructedMethod()
+        public async Task GenericClassConstructedMethod()
         {
             Assert.Equal("Hello Generic World!", await Invoke(
                 @"var r = x.GenericClassConstructedMethod(""Hello Generic World!"");",

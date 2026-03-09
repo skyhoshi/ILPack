@@ -1,12 +1,12 @@
-﻿using Xunit;
-
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void PartiallyResolvedGenericMethod()
+        public async Task PartiallyResolvedGenericMethod()
         {
             Assert.Equal(42, await Invoke(
                 $"int r = MyClass.PartiallyResolvedGenericMethod();",
@@ -14,7 +14,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void StaticGenericMethod()
+        public async Task StaticGenericMethod()
         {
             Assert.Equal(36, await Invoke(
                 $"int r = MyClass.StaticGenericMethod<int>(36);",
@@ -22,15 +22,15 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void StaticGenericMethodWithByRef()
+        public async Task StaticGenericMethodWithByRef()
         {
-            Assert.Equal((38,37), await Invoke(
+            Assert.Equal((38, 37), await Invoke(
                 $"int a = 37; int b = 38; MyClass.StaticGenericMethodWithByRef<int>(ref a, ref b);",
                 "(a,b)"));
         }
 
         [Fact]
-        public async void GenericMethod()
+        public async Task GenericMethod()
         {
             Assert.Equal(36, await Invoke(
                 $"int r = x.GenericMethod<int>(36);",
@@ -38,9 +38,9 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void GenericMethodWithByRef()
+        public async Task GenericMethodWithByRef()
         {
-            Assert.Equal((38,37), await Invoke(
+            Assert.Equal((38, 37), await Invoke(
                 $"int a = 37; int b = 38; x.GenericMethodWithByRef<int>(ref a, ref b);",
                 "(a,b)"));
         }

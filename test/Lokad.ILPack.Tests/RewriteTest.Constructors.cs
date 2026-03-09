@@ -1,11 +1,12 @@
-﻿using Xunit;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void Constructor()
+        public async Task Constructor()
         {
             Assert.Equal(("none", "none"), await Invoke(
                 $"var r = new MyClass();",
@@ -13,7 +14,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void ConstructorCallsBase()
+        public async Task ConstructorCallsBase()
         {
             Assert.Equal(("A", "none"), await Invoke(
                 $"var r = new MyClass(\"A\");",
@@ -21,7 +22,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void ConstructorCallsThis()
+        public async Task ConstructorCallsThis()
         {
             Assert.Equal(("A", "B"), await Invoke(
                 $"var r = new MyClass(\"A\", \"B\");",

@@ -1,13 +1,13 @@
-﻿using System.Threading;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
-
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void VoidMethod()
+        public async Task VoidMethod()
         {
             Assert.Equal(true, await Invoke(
                 "x.VoidMethod();",
@@ -15,7 +15,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void IntMethod()
+        public async Task IntMethod()
         {
             Assert.Equal(33, await Invoke(
                 "var r = x.IntMethod();",
@@ -23,7 +23,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void IntMethodWithParameters()
+        public async Task IntMethodWithParameters()
         {
             Assert.Equal(30, await Invoke(
                 "var r = x.IntMethodWithParameters(10,20);",
@@ -31,7 +31,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AnotherMethodWithDifferentParameterTypes7()
+        public async Task AnotherMethodWithDifferentParameterTypes7()
         {
             Assert.Equal(CancellationToken.None, await Invoke(
                 "var r = x.AnotherMethodWithDifferentParameterTypes7(false, 1.0f, 2, 3, 4, new object(), System.Threading.CancellationToken.None);",
@@ -47,7 +47,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AnotherMethodWithDefaultParameterValues()
+        public async Task AnotherMethodWithDefaultParameterValues()
         {
             Assert.Equal("Hallo, world!", await Invoke(
                 "var r = x.AnotherMethodWithDefaultParameterValues(0);",
@@ -90,7 +90,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void VirtualMethodWithInModifier()
+        public async Task VirtualMethodWithInModifier()
         {
             Assert.Equal("Hello", await Invoke(@"
     var s = new StringSpan("" Hello "",1,5);
@@ -99,19 +99,19 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void FunctionPointerWithGenericsCallback()
+        public async Task FunctionPointerWithGenericsCallback()
         {
             Assert.Equal(42, await Invoke(@"var r = x.MethodWithGenericCallback();", "r"));
         }
 
         [Fact]
-        public async void FunctionPointerWithCallback()
+        public async Task FunctionPointerWithCallback()
         {
             Assert.Equal((byte)42, await Invoke(@"var r = x.MethodWithSimpleCallback();", "r"));
         }
 
         [Fact]
-        public async void FunctionPointerWithModifiersCallback()
+        public async Task FunctionPointerWithModifiersCallback()
         {
             Assert.Equal("Hello", await Invoke(@"var r = x.MethodWithModifiersCallback();", "r"));
         }

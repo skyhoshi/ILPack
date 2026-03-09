@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
-
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void MethodWithVarArgs()
+        public async Task MethodWithVarArgs()
         {
             Assert.Equal("ApplesPearsBananas", await Invoke(
                 @"var r = x.MethodWithVarArgs(""Apples"", ""Pears"", ""Bananas"");",
@@ -17,7 +17,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void MethodWithFixedAndVarArgs()
+        public async Task MethodWithFixedAndVarArgs()
         {
             Assert.Equal("99: ApplesPearsBananas", await Invoke(
                 @"var r = x.MethodWithFixedAndVarArgs(99, ""Apples"", ""Pears"", ""Bananas"");",

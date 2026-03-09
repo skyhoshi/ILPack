@@ -1,11 +1,12 @@
-﻿using Xunit;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void ReadOnlyProperty()
+        public async Task ReadOnlyProperty()
         {
             Assert.Equal(23, await Invoke(
                 "",
@@ -13,7 +14,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void WriteOnlyProperty()
+        public async Task WriteOnlyProperty()
         {
             Assert.Equal(true, await Invoke(
                 "x.WriteOnlyProperty = 99;",
@@ -21,7 +22,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void ReadWriteOnlyProperty()
+        public async Task ReadWriteOnlyProperty()
         {
             Assert.Equal(101, await Invoke(
                 "x.ReadWriteProperty = 101;",
@@ -29,7 +30,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void WrappedSingleton()
+        public async Task WrappedSingleton()
         {
             Assert.Equal(default(string), await Invoke(
                 "",

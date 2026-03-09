@@ -1,23 +1,23 @@
-﻿using Xunit;
-
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void NoParamEvent()
+        public async Task NoParamEvent()
         {
             Assert.Equal(99, await Invoke(
                 @"  int cbVal = 0; 
                     x.NoParamEvent += () => cbVal = 99;
                     x.InvokeNoParamEvent()",
-                   
+
                 "cbVal"));
         }
 
         [Fact]
-        public async void InvokeNoParamEventWithNoListeners()
+        public async Task InvokeNoParamEventWithNoListeners()
         {
             Assert.Equal(true, await Invoke(
                 @"x.InvokeNoParamEvent()",
@@ -25,18 +25,18 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void IntParamEvent()
+        public async Task IntParamEvent()
         {
             Assert.Equal(77, await Invoke(
                 @"  int cbVal = 0; 
                     x.IntParamEvent += (val) => cbVal = val;
                     x.InvokeIntParamEvent(77)",
-                   
+
                 "cbVal"));
         }
 
         [Fact]
-        public async void InvokeIntParamEventWithNoListeners()
+        public async Task InvokeIntParamEventWithNoListeners()
         {
             Assert.Equal(true, await Invoke(
                 @"x.InvokeIntParamEvent(77)",

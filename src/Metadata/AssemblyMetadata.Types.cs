@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 
@@ -24,7 +25,18 @@ namespace Lokad.ILPack.Metadata
 
             // todo, also maybe in Module, ModuleRef, AssemblyRef and TypeRef
             // ECMA-335 page 273-274
-            return type.Assembly != SourceAssembly;
+            if (type.Assembly == SourceAssembly)
+                return false;
+            
+            // ok, since dotnet8 (at least, maybe 7), we can have a difference here
+            // the assembly may not be the same as the source assembly even though
+            // it is from the dumped one.
+            var dumpedAssemblyModules = SourceAssembly.GetModules();
+            
+            // dumpedAssemblyModules.Length >= 1 => (imply)
+            //                  dumpedAssemblyModules[0].Assembly != type.Assembly
+            return dumpedAssemblyModules.Length < 1 ||
+                   dumpedAssemblyModules.All(m => m.Assembly != type.Assembly);
         }
 
         private EntityHandle ResolveTypeReference(Type type)

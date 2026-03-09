@@ -1,11 +1,12 @@
-﻿using Xunit;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void AbstractMethodThroughBase()
+        public async Task AbstractMethodThroughBase()
         {
             Assert.Equal("MyClass.AbstractMethod", await Invoke(
                 "var bt = x as MyBaseClass;  var r = bt.AbstractMethod();",
@@ -14,7 +15,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AbstractMethodThroughImpl()
+        public async Task AbstractMethodThroughImpl()
         {
             Assert.Equal("MyClass.AbstractMethod", await Invoke(
                 "var r = x.AbstractMethod();",
@@ -23,7 +24,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void VirtualMethodThroughBase()
+        public async Task VirtualMethodThroughBase()
         {
             Assert.Equal("MyClass.VirtualMethod", await Invoke(
                 "var bt = x as MyBaseClass;  var r = bt.VirtualMethod();",
@@ -32,7 +33,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void VirtualMethodThroughImpl()
+        public async Task VirtualMethodThroughImpl()
         {
             Assert.Equal("MyClass.VirtualMethod", await Invoke(
                 "var r = x.VirtualMethod();",
@@ -41,7 +42,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void HiddenMethodThroughBase()
+        public async Task HiddenMethodThroughBase()
         {
             Assert.Equal("MyBaseClass.HiddenMethod", await Invoke(
                 "var bt = x as MyBaseClass;  var r = bt.HiddenMethod();",
@@ -50,7 +51,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void HiddenMethodThroughImpl()
+        public async Task HiddenMethodThroughImpl()
         {
             Assert.Equal("MyClass.HiddenMethod", await Invoke(
                 "var r = x.HiddenMethod();",
@@ -59,7 +60,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void HiddenVirtualMethodThroughBase()
+        public async Task HiddenVirtualMethodThroughBase()
         {
             Assert.Equal("MyBaseClass.HiddenVirtualMethod", await Invoke(
                 "var bt = x as MyBaseClass;  var r = bt.HiddenVirtualMethod();",
@@ -68,7 +69,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void HiddenVirtualMethodThroughImpl()
+        public async Task HiddenVirtualMethodThroughImpl()
         {
             Assert.Equal("MyClass.HiddenVirtualMethod", await Invoke(
                 "var r = x.HiddenVirtualMethod();",

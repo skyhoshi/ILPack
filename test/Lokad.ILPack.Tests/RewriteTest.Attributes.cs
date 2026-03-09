@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+using System.Reflection;
+using System.Threading.Tasks;
 using Xunit;
-
 
 namespace Lokad.ILPack.Tests
 {
@@ -26,16 +26,16 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributePlacedOnMethod()
+        public async Task AttributePlacedOnMethod()
         {
-            Assert.Equal(new int[] { 10, 20, 30 } , await Invoke(
+            Assert.Equal(new int[] { 10, 20, 30 }, await Invoke(
                 $"var attr = typeof({_namespaceName}.MyClass).GetMethod(\"AttributeArrayTest\").GetCustomAttribute<MyAttribute>();",
                 "attr.Values"
                 ));
         }
 
         [Fact]
-        public async void AttributePlacedOnProperty()
+        public async Task AttributePlacedOnProperty()
         {
             Assert.Equal(new int[] { 1, 2, 3 }, await Invoke(
                 $"var attr = typeof({_namespaceName}.MyClass).GetProperty(\"AttributeOnProperty\").GetCustomAttribute<MyAttribute>();",
@@ -44,7 +44,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributeNamedValue()
+        public async Task AttributeNamedValue()
         {
             Assert.Equal("ILPack", await Invoke(
                 $"var attr = typeof({_namespaceName}.MyClass).GetMethod(\"AttributeArrayTest\").GetCustomAttribute<MyAttribute>();",
@@ -53,7 +53,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributeNamedArrayValues()
+        public async Task AttributeNamedArrayValues()
         {
             Assert.Equal(new int[] { 40, 50, 60 }, await Invoke(
                 $"var attr = typeof({_namespaceName}.MyClass).GetMethod(\"AttributeArrayTest\").GetCustomAttribute<MyAttribute>();",
@@ -62,7 +62,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributeNamedObjectValues()
+        public async Task AttributeNamedObjectValues()
         {
             Assert.Equal(new object[] { 1d, 2 }, await Invoke(
                 $"var attr = typeof({_namespaceName}.MyClass).GetMethod(\"AttributeArrayTest\").GetCustomAttribute<MyAttribute>();",
@@ -71,7 +71,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributeNullString()
+        public async Task AttributeNullString()
         {
             Assert.Null(
                 await Invoke(
@@ -80,7 +80,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributeNullArray()
+        public async Task AttributeNullArray()
         {
             Assert.Null(
                 await Invoke(
@@ -89,7 +89,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributeNullArrayValue()
+        public async Task AttributeNullArrayValue()
         {
             Assert.Equal(
                 new object[] { null },
@@ -99,10 +99,10 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void AttributeObjectArrayValue()
+        public async Task AttributeObjectArrayValue()
         {
             Assert.Equal(
-                new object[] { 1, 2.3f, "string", new [] { 4 } },
+                new object[] { 1, 2.3f, "string", new[] { 4 } },
                 await Invoke(
                     $"var attr = typeof({_namespaceName}.MyClass).GetMethod(\"AttributeObjectArrayValueTest\").GetCustomAttribute<MyObjectArrayAttribute>();",
                     "attr.Values"));

@@ -1,12 +1,12 @@
-﻿using Xunit;
-
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void CallExplicitlyImplementedInterfaceMethod()
+        public async Task CallExplicitlyImplementedInterfaceMethod()
         {
             Assert.Equal(1001, await Invoke(
                 $"int r = (x as IMyItf).InterfaceMethod1();",
@@ -14,7 +14,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void CallImplicitlyImplementedInterfaceMethodThroughInterface()
+        public async Task CallImplicitlyImplementedInterfaceMethodThroughInterface()
         {
             Assert.Equal(1002, await Invoke(
                 $"int r = (x as IMyItf).InterfaceMethod2();",
@@ -22,7 +22,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void CallImplicitlyImplementedInterfaceMethodThroughClass()
+        public async Task CallImplicitlyImplementedInterfaceMethodThroughClass()
         {
             Assert.Equal(1002, await Invoke(
                 $"int r = x.InterfaceMethod2();",
@@ -30,7 +30,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void CallExplicitlyImplementedGenericInterfaceMethod()
+        public async Task CallExplicitlyImplementedGenericInterfaceMethod()
         {
             Assert.Equal(4711, await Invoke(
                 $"int r = (x as IMyItf).InterfaceMethod3<int>(() => 4711);",
@@ -38,7 +38,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void ImplementImportedInterface()
+        public async Task ImplementImportedInterface()
         {
             Assert.Equal(1, await Invoke(
                 $"var a = new MyComparable(10); var b = new MyComparable(20);",
@@ -47,7 +47,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void ImplementImportedGenericInterface()
+        public async Task ImplementImportedGenericInterface()
         {
             Assert.Equal(1, await Invoke(
                 $"var a = new MyComparableT(10); var b = new MyComparableT(20);",

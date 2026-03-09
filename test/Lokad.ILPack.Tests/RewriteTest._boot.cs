@@ -1,11 +1,11 @@
-﻿// Uncomment this to test against the original TestSubject instead of the cloned one
-//#define USE_ORIGINAL_TESTSUBJECT
-
-using Microsoft.CodeAnalysis.CSharp.Scripting;
-using Microsoft.CodeAnalysis.Scripting;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
+
+// Uncomment this to test against the original TestSubject instead of the cloned one
+//#define USE_ORIGINAL_TESTSUBJECT
 
 namespace Lokad.ILPack.Tests
 {
@@ -45,7 +45,6 @@ namespace Lokad.ILPack.Tests
             _asmCloned = typeof(TestSubject.MyClass).Assembly;
             var originalAssembly = _asmOriginal.Location;
 
-
 #if USE_ORIGINAL_TESTSUBJECT
 
             _namespaceName = "TestSubject";
@@ -82,7 +81,7 @@ namespace Lokad.ILPack.Tests
         async Task<object> Invoke(string setup, string resultExpression)
         {
             var script = CSharpScript
-                .Create($"var x = new MyClass();", 
+                .Create($"var x = new MyClass();",
                         ScriptOptions.Default
                             .WithReferences(_assembly)
                             .WithImports(_namespaceName, "System.Reflection")

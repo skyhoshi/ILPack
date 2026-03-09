@@ -1,12 +1,12 @@
-﻿using Xunit;
-
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void Indexer()
+        public async Task Indexer()
         {
             Assert.Equal(10, await Invoke(
                 $"x[1] = 10; var r = x[1];",

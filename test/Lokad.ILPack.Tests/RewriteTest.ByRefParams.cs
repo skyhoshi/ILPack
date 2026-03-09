@@ -1,12 +1,12 @@
-﻿using Xunit;
-
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void ByRefParam()
+        public async Task ByRefParam()
         {
             Assert.Equal(34, await Invoke(
                 $"int r=0; x.ByRefParam(ref r);",
@@ -14,7 +14,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void OutParam()
+        public async Task OutParam()
         {
             Assert.Equal(35, await Invoke(
                 $"int r; x.OutParam(out r);",

@@ -1,13 +1,13 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Xunit;
-
 
 namespace Lokad.ILPack.Tests
 {
     partial class RewriteTest
     {
         [Fact]
-        public async void StructBasic()
+        public async Task StructBasic()
         {
             Assert.Equal((20, 30), await Invoke(
                 $"var s = x.GetMyStruct();",
@@ -15,7 +15,7 @@ namespace Lokad.ILPack.Tests
         }
 
         [Fact]
-        public async void StructExplicitLayout()
+        public async Task StructExplicitLayout()
         {
             Assert.Equal(0x1234, await Invoke(
                 $"var s = new MyExplicitLayoutStruct(); s.al=0x34; s.ah = 0x12;",
@@ -31,7 +31,6 @@ namespace Lokad.ILPack.Tests
             Assert.Equal(16, t.StructLayoutAttribute.Size);
             Assert.Equal(1, t.StructLayoutAttribute.Pack);
         }
-
 
     }
 }

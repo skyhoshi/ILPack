@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -107,7 +107,7 @@ namespace Lokad.ILPack.Tests
         private static void SerializeGenericsLibrary(string fileName)
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "GenericsAssembly"};
+            var assemblyName = new AssemblyName { Name = "GenericsAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("GenericsModule");
 
@@ -123,7 +123,7 @@ namespace Lokad.ILPack.Tests
             var myType = newModule.DefineType("Namespace.INoise",
                 TypeAttributes.Public | TypeAttributes.Interface | TypeAttributes.Abstract);
 
-            var typeParamNames = new[] {"TFirst", "TSecond"};
+            var typeParamNames = new[] { "TFirst", "TSecond" };
             var typeParams = myType.DefineGenericParameters(typeParamNames);
 
             var paramFirst = typeParams[0];
@@ -144,7 +144,7 @@ namespace Lokad.ILPack.Tests
             var interfaceB = typeof(ISerializable);
 
             paramSecond.SetBaseTypeConstraint(baseType);
-            var interfaceTypes = new[] {interfaceA, interfaceB};
+            var interfaceTypes = new[] { interfaceA, interfaceB };
             paramSecond.SetInterfaceConstraints(interfaceTypes);
 
             myType.CreateType();
@@ -162,7 +162,7 @@ namespace Lokad.ILPack.Tests
         public void TestBareMinimum()
         {
             // create assembly name
-            var assemblyName = new AssemblyName {Name = "FactorialAssembly"};
+            var assemblyName = new AssemblyName { Name = "FactorialAssembly" };
 
             // create assembly with one module
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
@@ -175,7 +175,7 @@ namespace Lokad.ILPack.Tests
         public void TestBasicInheritance()
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "MyAssembly"};
+            var assemblyName = new AssemblyName { Name = "MyAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MyModule");
 
@@ -220,7 +220,7 @@ namespace Lokad.ILPack.Tests
         public void TestFieldAccessSerialization()
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "MyAssembly"};
+            var assemblyName = new AssemblyName { Name = "MyAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MyModule");
 
@@ -262,7 +262,7 @@ namespace Lokad.ILPack.Tests
         public void TestInlineConstructorReference()
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "MyAssembly"};
+            var assemblyName = new AssemblyName { Name = "MyAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MyModule");
 
@@ -335,7 +335,7 @@ namespace Lokad.ILPack.Tests
         public void TestMethodReferencingSerialization()
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "MyAssembly"};
+            var assemblyName = new AssemblyName { Name = "MyAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MyModule");
 
@@ -356,7 +356,7 @@ namespace Lokad.ILPack.Tests
             var generator = myMethod.GetILGenerator();
 
             generator.Emit(OpCodes.Ldstr, "Hello, World!");
-            generator.Emit(OpCodes.Call, typeof(Console).GetMethod(nameof(Console.WriteLine), new[] {typeof(string)}));
+            generator.Emit(OpCodes.Call, typeof(Console).GetMethod(nameof(Console.WriteLine), new[] { typeof(string) }));
             generator.Emit(OpCodes.Ret);
 
             myType.CreateType();
@@ -368,7 +368,7 @@ namespace Lokad.ILPack.Tests
         public void TestNullStrings()
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "MyAssembly"};
+            var assemblyName = new AssemblyName { Name = "MyAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MyModule");
 
@@ -406,7 +406,7 @@ namespace Lokad.ILPack.Tests
         public void TestPropertySerialization()
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "MyAssembly"};
+            var assemblyName = new AssemblyName { Name = "MyAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MyModule");
 
@@ -452,7 +452,7 @@ namespace Lokad.ILPack.Tests
         public void TestSelfReferencingSerialization()
         {
             // Define assembly and module
-            var assemblyName = new AssemblyName {Name = "MyAssembly"};
+            var assemblyName = new AssemblyName { Name = "MyAssembly" };
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MyModule");
 
@@ -527,7 +527,7 @@ namespace Lokad.ILPack.Tests
         public void TestTypeSerialization()
         {
             // create assembly name
-            var assemblyName = new AssemblyName {Name = "FactorialAssembly"};
+            var assemblyName = new AssemblyName { Name = "FactorialAssembly" };
 
             // create assembly with one module
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
@@ -734,15 +734,15 @@ namespace Lokad.ILPack.Tests
 
         [Fact]
         public void TestBuildNullTargetMethod()
-        { 
+        {
             var assemblyName = new AssemblyName("MissingAbstractTestExample");
 
             var newAssembly = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var newModule = newAssembly.DefineDynamicModule("MissingAbstractTestExample");
 
-            var interfaceA = newModule.DefineType("IA", 
+            var interfaceA = newModule.DefineType("IA",
                 TypeAttributes.Public | TypeAttributes.Interface | TypeAttributes.Abstract);
-            interfaceA.DefineMethod("ma", 
+            interfaceA.DefineMethod("ma",
                 MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.Abstract,
                 typeof(int), Array.Empty<Type>());
             interfaceA.CreateType();
@@ -752,7 +752,7 @@ namespace Lokad.ILPack.Tests
                 null, new Type[] { interfaceA });
             classA.CreateType();
 
-            SerializeAndVerifyAssembly(newAssembly, "MissingAbstractTestExample.dll");          
+            SerializeAndVerifyAssembly(newAssembly, "MissingAbstractTestExample.dll");
 
         }
 
@@ -775,7 +775,7 @@ namespace Lokad.ILPack.Tests
             var type = assembly.GetType("Type\\+");
             Assert.NotNull(type);
         }
-                
+
         [Fact]
         public void TestMoreSpecialCharacters()
         {
@@ -787,7 +787,7 @@ namespace Lokad.ILPack.Tests
 
             var myType = newModule.DefineType("A.B*C.D&E", TypeAttributes.Public);
             myType.CreateType();
-            
+
             var nested = myType.DefineNestedType("F", TypeAttributes.NestedPublic);
             nested.CreateType();
 
